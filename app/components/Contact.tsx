@@ -26,27 +26,21 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle')
     
     try {
-      // Simular envio real - aqui você pode integrar com EmailJS, Formspree, etc.
-      const response = await fetch('mailto:gabrielsilvadis@outlook.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
-
-      // Por enquanto, vamos simular sucesso
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      // Simular delay de processamento
+      await new Promise(resolve => setTimeout(resolve, 1500))
       
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      
-      // Abrir cliente de email como fallback
+      // Preparar dados para o email
       const emailSubject = encodeURIComponent(formData.subject || 'Contato do Portfolio')
       const emailBody = encodeURIComponent(
         `Nome: ${formData.name}\nEmail: ${formData.email}\n\nMensagem:\n${formData.message}`
       )
+      
+      // Abrir cliente de email
       window.open(`mailto:gabrielsilvadis@outlook.com?subject=${emailSubject}&body=${emailBody}`)
+      
+      // Marcar como sucesso
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', subject: '', message: '' })
       
     } catch (error) {
       setSubmitStatus('error')

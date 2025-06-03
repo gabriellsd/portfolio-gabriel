@@ -114,14 +114,14 @@ const About: React.FC = () => {
           
           {/* Enhanced Timeline */}
           <div className="max-w-4xl mx-auto relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-500 via-tech-purple to-accent-500 opacity-30"></div>
+            {/* Timeline Line - apenas para desktop */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary-500 via-tech-purple to-accent-500 opacity-30" style={{ height: 'calc(100% - 4rem)' }}></div>
             
             {/* Timeline Items */}
             <div className="space-y-12">
               {/* Current Position */}
-              <div className="flex items-center relative">
-                <div className="flex-1 pr-8 text-right">
+              <div className="md:flex md:items-center relative">
+                <div className="md:flex-1 md:pr-8 md:text-right">
                   <div className="pro-card hover-lift p-6">
                     <h4 className="text-xl font-bold text-primary-500 mb-2">Analista Multifuncional</h4>
                     <p className="text-tech-gray text-sm mb-2">Empresa de Grande Porte</p>
@@ -131,20 +131,20 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-500 rounded-full border-4 border-dark-bg shadow-lg z-10">
+                {/* Timeline Dot - apenas para desktop */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-500 rounded-full border-4 border-dark-bg shadow-lg z-10">
                   <div className="w-full h-full bg-primary-500 rounded-full animate-pulse"></div>
                 </div>
                 
-                <div className="flex-1 pl-8">
+                <div className="md:flex-1 md:pl-8 mt-4 md:mt-0">
                   <div className="text-primary-500 font-semibold">Ago 2020 - Presente</div>
                   <div className="text-tech-gray text-sm">4+ anos de experiência</div>
                 </div>
               </div>
 
               {/* Education */}
-              <div className="flex items-center relative">
-                <div className="flex-1 pr-8 text-right">
+              <div className="md:flex md:items-center relative">
+                <div className="md:flex-1 md:pr-8 md:text-right">
                   <div className="pro-card hover-lift p-6">
                     <h4 className="text-xl font-bold text-tech-purple mb-2">Formação ADS</h4>
                     <p className="text-tech-gray text-sm mb-2">UNICNEC</p>
@@ -154,20 +154,20 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-tech-purple rounded-full border-4 border-dark-bg shadow-lg z-10">
+                {/* Timeline Dot - apenas para desktop */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-tech-purple rounded-full border-4 border-dark-bg shadow-lg z-10">
                   <div className="w-full h-full bg-tech-purple rounded-full"></div>
                 </div>
                 
-                <div className="flex-1 pl-8">
+                <div className="md:flex-1 md:pl-8 mt-4 md:mt-0">
                   <div className="text-tech-purple font-semibold">Dez 2023</div>
                   <div className="text-tech-gray text-sm">Diploma registrado</div>
                 </div>
               </div>
 
               {/* Certifications */}
-              <div className="flex items-center relative">
-                <div className="flex-1 pr-8 text-right">
+              <div className="md:flex md:items-center relative">
+                <div className="md:flex-1 md:pr-8 md:text-right">
                   <div className="pro-card hover-lift p-6">
                     <h4 className="text-xl font-bold text-accent-500 mb-2">Certificações</h4>
                     <p className="text-tech-gray text-sm mb-2">Elaborata Informática</p>
@@ -177,12 +177,12 @@ const About: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-accent-500 rounded-full border-4 border-dark-bg shadow-lg z-10">
+                {/* Timeline Dot - apenas para desktop */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-accent-500 rounded-full border-4 border-dark-bg shadow-lg z-10">
                   <div className="w-full h-full bg-accent-500 rounded-full"></div>
                 </div>
                 
-                <div className="flex-1 pl-8">
+                <div className="md:flex-1 md:pl-8 mt-4 md:mt-0">
                   <div className="text-accent-500 font-semibold">2021 - 2022</div>
                   <div className="text-tech-gray text-sm">Especializações técnicas</div>
                 </div>
