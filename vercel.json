@@ -1,0 +1,10 @@
+{
+  "env": {
+    "GITHUB_PAGES": "false"
+  },
+  "build": {
+    "env": {
+      "GITHUB_PAGES": "false"
+    }
+  }
+} 
