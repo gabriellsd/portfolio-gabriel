@@ -20,15 +20,13 @@ const Contact: React.FC = () => {
     })
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
     
-    try {
-      // Simular delay de processamento
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      
+    // Simular delay de processamento
+    setTimeout(() => {
       // Preparar dados para o email
       const emailSubject = encodeURIComponent(formData.subject || 'Contato do Portfolio')
       const emailBody = encodeURIComponent(
@@ -41,12 +39,8 @@ const Contact: React.FC = () => {
       // Marcar como sucesso
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
-      
-    } catch (error) {
-      setSubmitStatus('error')
-    } finally {
       setIsSubmitting(false)
-    }
+    }, 1500)
   }
 
   const contactInfo = [
