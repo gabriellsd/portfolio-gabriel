@@ -38,17 +38,19 @@ const Hero: React.FC = () => {
           </span>
         </h1>
 
-        {/* Typing Animation */}
+        {/* Typing Animation - Without visible cursor */}
         <div className="text-xl md:text-3xl mb-4 h-12 flex items-center justify-center">
           <span className="text-primary-500 subtle-glow font-medium">
             {displayText}
-            <span className="animate-pulse text-tech-purple">|</span>
+            {currentIndex < fullText.length && (
+              <span className="animate-pulse text-tech-purple opacity-75">|</span>
+            )}
           </span>
         </div>
 
-        {/* Professional Title */}
+        {/* Professional Title - Updated */}
         <div className="text-lg md:text-xl gradient-text font-semibold mb-8">
-          Tecnólogo em Análise e Desenvolvimento de Sistemas
+          Analista de Sistemas
         </div>
 
         {/* Subtitle */}

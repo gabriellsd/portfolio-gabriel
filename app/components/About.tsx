@@ -11,33 +11,33 @@ const About: React.FC = () => {
           <div className="space-y-8">
             <div>
               <h2 className="text-4xl md:text-6xl font-bold mb-4">
-                <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+                <span className="gradient-text">
                   Sobre Mim
                 </span>
               </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple"></div>
+              <div className="w-24 h-1 bg-gradient-tech"></div>
             </div>
 
-            <div className="space-y-6 text-lg leading-relaxed text-gray-300">
+            <div className="space-y-6 text-lg leading-relaxed text-tech-gray">
               <p>
-                Sou <span className="text-neon-blue font-semibold">Gabriel Dias da Silva</span>, 
-                um Tecnólogo em Análise e Desenvolvimento de Sistemas com sólida experiência em 
-                <span className="text-neon-purple font-semibold"> suporte técnico</span>, 
-                <span className="text-neon-pink font-semibold"> desenvolvimento de sistemas</span> e 
-                <span className="text-neon-green font-semibold"> administração de redes</span>.
+                Sou <span className="text-primary-500 font-semibold">Gabriel Dias da Silva</span>, 
+                um Analista de Sistemas com sólida experiência em 
+                <span className="text-tech-purple font-semibold"> suporte técnico</span>, 
+                <span className="text-accent-500 font-semibold"> desenvolvimento de sistemas</span> e 
+                <span className="text-primary-600 font-semibold"> administração de redes</span>.
               </p>
               
               <p>
-                Natural de <span className="text-neon-blue">Campo Largo, Paraná</span>, 
+                Natural de <span className="text-primary-500">Campo Largo, Paraná</span>, 
                 me formei pela UNICNEC em dezembro de 2023. Desde agosto de 2020, 
                 atuo como Analista em uma empresa de grande porte, onde desenvolvi 
                 expertise em múltiplas áreas da tecnologia.
               </p>
 
               <p>
-                Sou apaixonado por <span className="text-neon-purple">Linux</span>, 
-                <span className="text-neon-pink"> segurança da informação</span> e 
-                <span className="text-neon-green"> desenvolvimento de soluções eficientes</span>. 
+                Sou apaixonado por <span className="text-tech-purple">Linux</span>, 
+                <span className="text-accent-500"> segurança da informação</span> e 
+                <span className="text-primary-600"> desenvolvimento de soluções eficientes</span>. 
                 Acredito que a tecnologia deve ser segura, eficiente e acessível.
               </p>
             </div>
@@ -45,16 +45,16 @@ const About: React.FC = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-neon-blue neon-glow mb-2">4+</div>
-                <div className="text-sm text-gray-400">Anos de Experiência</div>
+                <div className="text-3xl font-bold text-primary-500 subtle-glow mb-2">4+</div>
+                <div className="text-sm text-tech-gray">Anos de Experiência</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-neon-purple neon-glow mb-2">2023</div>
-                <div className="text-sm text-gray-400">Formação ADS</div>
+                <div className="text-3xl font-bold text-tech-purple subtle-glow mb-2">2023</div>
+                <div className="text-sm text-tech-gray">Formação ADS</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-neon-pink neon-glow mb-2">100%</div>
-                <div className="text-sm text-gray-400">Dedicação</div>
+                <div className="text-3xl font-bold text-accent-500 subtle-glow mb-2">100%</div>
+                <div className="text-sm text-tech-gray">Dedicação</div>
               </div>
             </div>
           </div>
@@ -62,11 +62,11 @@ const About: React.FC = () => {
           {/* Right Column - Visual Elements */}
           <div className="relative">
             {/* Main Card */}
-            <div className="relative bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm rounded-2xl p-8 border border-neon-blue/20 neon-border hover:scale-105 transition-all duration-300">
+            <div className="relative pro-card hover-lift p-8">
               {/* Profile Image Placeholder */}
               <div className="w-48 h-48 mx-auto mb-6 relative">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink animate-pulse opacity-75"></div>
-                <div className="absolute inset-2 rounded-full bg-black flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full bg-gradient-tech animate-pulse opacity-30"></div>
+                <div className="absolute inset-2 rounded-full bg-neutral-900 border-2 border-primary-500/30 flex items-center justify-center">
                   <span className="text-4xl font-bold text-white">GDS</span>
                 </div>
               </div>
@@ -74,9 +74,9 @@ const About: React.FC = () => {
               {/* Info */}
               <div className="text-center space-y-4">
                 <h3 className="text-2xl font-bold text-white">Gabriel Dias da Silva</h3>
-                <p className="text-neon-blue">Tecnólogo em ADS</p>
+                <p className="text-primary-500">Analista de Sistemas</p>
                 
-                <div className="space-y-2 text-sm text-gray-400">
+                <div className="space-y-2 text-sm text-tech-gray">
                   <div className="flex items-center justify-center gap-2">
                     <span>📍</span>
                     <span>Campo Largo, Paraná</span>
@@ -98,45 +98,95 @@ const About: React.FC = () => {
             </div>
 
             {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-neon-blue rounded-full animate-float opacity-60"></div>
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-neon-purple rounded-full animate-float opacity-40" style={{ animationDelay: '2s' }}></div>
-            <div className="absolute top-1/2 -right-8 w-4 h-4 bg-neon-pink rounded-full animate-float opacity-50" style={{ animationDelay: '4s' }}></div>
+            <div className="absolute -top-4 -right-4 w-6 h-6 bg-primary-500/30 rounded-full animate-float opacity-40"></div>
+            <div className="absolute -bottom-4 -left-4 w-4 h-4 bg-tech-purple/30 rounded-full animate-float opacity-30" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-1/2 -right-8 w-3 h-3 bg-accent-500/30 rounded-full animate-float opacity-35" style={{ animationDelay: '4s' }}></div>
           </div>
         </div>
 
-        {/* Professional Journey Timeline */}
+        {/* Professional Journey Timeline with Enhanced Effects */}
         <div className="mt-20">
           <h3 className="text-3xl font-bold text-center text-white mb-12">
-            <span className="bg-gradient-to-r from-neon-blue to-neon-purple bg-clip-text text-transparent">
+            <span className="gradient-text">
               Jornada Profissional
             </span>
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm rounded-xl p-6 border border-neon-blue/20">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-neon-blue rounded-full animate-pulse"></div>
-                <span className="text-neon-blue font-semibold">Atual - Analista Multifuncional</span>
+          {/* Enhanced Timeline */}
+          <div className="max-w-4xl mx-auto relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary-500 via-tech-purple to-accent-500 opacity-30"></div>
+            
+            {/* Timeline Items */}
+            <div className="space-y-12">
+              {/* Current Position */}
+              <div className="flex items-center relative">
+                <div className="flex-1 pr-8 text-right">
+                  <div className="pro-card hover-lift p-6">
+                    <h4 className="text-xl font-bold text-primary-500 mb-2">Analista Multifuncional</h4>
+                    <p className="text-tech-gray text-sm mb-2">Empresa de Grande Porte</p>
+                    <p className="text-white text-sm">
+                      Suporte técnico, administração de redes e desenvolvimento de sistemas
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-500 rounded-full border-4 border-dark-bg shadow-lg z-10">
+                  <div className="w-full h-full bg-primary-500 rounded-full animate-pulse"></div>
+                </div>
+                
+                <div className="flex-1 pl-8">
+                  <div className="text-primary-500 font-semibold">Ago 2020 - Presente</div>
+                  <div className="text-tech-gray text-sm">4+ anos de experiência</div>
+                </div>
               </div>
-              <p className="text-gray-400 text-sm mb-2">Empresa de Grande Porte • Ago 2020 - Presente</p>
-              <p className="text-gray-300 text-sm">
-                Atuação em suporte técnico, análise de sistemas e administração de redes. 
-                Responsável por configuração de infraestrutura, desenvolvimento de soluções 
-                e garantia da segurança da informação.
-              </p>
-            </div>
 
-            <div className="bg-gradient-to-br from-gray-900/30 to-black/30 backdrop-blur-sm rounded-xl p-6 border border-neon-purple/20">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-neon-purple rounded-full"></div>
-                <span className="text-neon-purple font-semibold">Formação Acadêmica</span>
+              {/* Education */}
+              <div className="flex items-center relative">
+                <div className="flex-1 pr-8 text-right">
+                  <div className="pro-card hover-lift p-6">
+                    <h4 className="text-xl font-bold text-tech-purple mb-2">Formação ADS</h4>
+                    <p className="text-tech-gray text-sm mb-2">UNICNEC</p>
+                    <p className="text-white text-sm">
+                      Tecnólogo em Análise e Desenvolvimento de Sistemas
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-tech-purple rounded-full border-4 border-dark-bg shadow-lg z-10">
+                  <div className="w-full h-full bg-tech-purple rounded-full"></div>
+                </div>
+                
+                <div className="flex-1 pl-8">
+                  <div className="text-tech-purple font-semibold">Dez 2023</div>
+                  <div className="text-tech-gray text-sm">Diploma registrado</div>
+                </div>
               </div>
-              <p className="text-gray-400 text-sm mb-2">UNICNEC • Concluído em Dez 2023</p>
-              <p className="text-gray-300 text-sm">
-                Tecnólogo em Análise e Desenvolvimento de Sistemas. 
-                Formação sólida em programação, banco de dados, engenharia de software 
-                e gestão de projetos tecnológicos.
-              </p>
+
+              {/* Certifications */}
+              <div className="flex items-center relative">
+                <div className="flex-1 pr-8 text-right">
+                  <div className="pro-card hover-lift p-6">
+                    <h4 className="text-xl font-bold text-accent-500 mb-2">Certificações</h4>
+                    <p className="text-tech-gray text-sm mb-2">Elaborata Informática</p>
+                    <p className="text-white text-sm">
+                      Múltiplas certificações em Linux, Redes e Suporte
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-accent-500 rounded-full border-4 border-dark-bg shadow-lg z-10">
+                  <div className="w-full h-full bg-accent-500 rounded-full"></div>
+                </div>
+                
+                <div className="flex-1 pl-8">
+                  <div className="text-accent-500 font-semibold">2021 - 2022</div>
+                  <div className="text-tech-gray text-sm">Especializações técnicas</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
