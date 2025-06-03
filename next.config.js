@@ -5,7 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio-gabriel' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio-gabriel/' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/portfolio-gabriel' : '',
 }
 
