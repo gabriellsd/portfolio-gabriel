@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 Portfolio Futurista - Analista de Sistemas
 
 Um portfólio minimalista, tecnológico e cheio de animações surreais, construído com as mais modernas tecnologias web.
@@ -191,3 +192,6 @@ Contribuições são bem-vindas! Sinta-se à vontade para:
 ---
 
 **Desenvolvido com ❤️ e muito código por um Analista de Sistemas apaixonado por tecnologia!** 
+=======
+# portfolio-gabriel
+>>>>>>> 0a92011a757d928cb7eeaab952e3db9937ef713e
