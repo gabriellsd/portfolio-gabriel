@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -10,7 +10,11 @@ export const metadata: Metadata = {
   description: 'Portfolio profissional de Gabriel Dias da Silva, Tecnólogo em ADS com experiência em suporte técnico, desenvolvimento de sistemas e administração de redes',
   keywords: ['Gabriel Dias', 'Analista de Sistemas', 'Suporte Técnico', 'Redes', 'Linux', 'Desenvolvimento', 'Paraná'],
   authors: [{ name: 'Gabriel Dias da Silva', url: 'https://www.linkedin.com/in/gabriel-dias-676a68266/' }],
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
