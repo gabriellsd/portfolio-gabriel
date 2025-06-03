@@ -21,10 +21,10 @@ module.exports = {
           900: '#0c4a6e',
         },
         neon: {
-          blue: '#00f5ff',
-          purple: '#8b5cf6',
-          pink: '#f72585',
-          green: '#39ff14',
+          blue: '#4dd4e8',
+          purple: '#6b7cf6',
+          pink: '#d946a8',
+          green: '#10b981',
         }
       },
       backgroundImage: {
@@ -46,8 +46,8 @@ module.exports = {
           '50%': { transform: 'translateY(-20px)' },
         },
         'pulse-glow': {
-          '0%': { boxShadow: '0 0 5px #00f5ff, 0 0 10px #00f5ff, 0 0 15px #00f5ff' },
-          '100%': { boxShadow: '0 0 10px #00f5ff, 0 0 20px #00f5ff, 0 0 30px #00f5ff' },
+          '0%': { boxShadow: '0 0 5px #4dd4e8, 0 0 10px #4dd4e8, 0 0 15px #4dd4e8' },
+          '100%': { boxShadow: '0 0 10px #4dd4e8, 0 0 20px #4dd4e8, 0 0 30px #4dd4e8' },
         },
         'slide-up': {
           '0%': { opacity: '0', transform: 'translateY(50px)' },
