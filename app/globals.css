@@ -4,14 +4,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* TESTE: Desabilitar todas as animações temporariamente */
-*, *::before, *::after {
-  animation-duration: 0s !important;
-  animation-delay: 0s !important;
-  transition-duration: 0s !important;
-  transition-delay: 0s !important;
-}
-
 :root {
   --primary-blue: #3b82f6;
   --secondary-blue: #1e40af;
