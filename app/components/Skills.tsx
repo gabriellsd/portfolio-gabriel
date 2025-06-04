@@ -168,7 +168,7 @@ const Skills: React.FC = () => {
                 className="flex items-center gap-3 p-4 bg-gradient-to-r from-gray-900/30 to-transparent rounded-lg border-l-4 border-neon-green/40 hover:border-neon-green transition-all duration-300 hover:scale-105"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-                <div className="w-2 h-2 bg-neon-green rounded-full animate-pulse"></div>
+                <span className="text-neon-green">✓</span>
                 <span className="text-gray-300 hover:text-white transition-colors duration-300 text-sm">
                   {cert}
                 </span>

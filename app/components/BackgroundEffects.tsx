@@ -1,28 +1,8 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 const BackgroundEffects: React.FC = () => {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([])
-
-  useEffect(() => {
-    const generateParticles = () => {
-      const newParticles = []
-      for (let i = 0; i < 30; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 3 + 1,
-          delay: Math.random() * 8
-        })
-      }
-      setParticles(newParticles)
-    }
-
-    generateParticles()
-  }, [])
-
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
       {/* Animated Grid Background */}
@@ -33,23 +13,6 @@ const BackgroundEffects: React.FC = () => {
       
       {/* Professional Background Gradient */}
       <div className="absolute inset-0 tech-bg"></div>
-      
-      {/* Floating Particles */}
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="floating-particle absolute rounded-full"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            animationDelay: `${particle.delay}s`,
-            background: `radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent)`,
-            boxShadow: `0 0 ${particle.size * 2}px rgba(59, 130, 246, 0.3)`
-          }}
-        />
-      ))}
       
       {/* Subtle Overlay Gradients */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-900/10 via-transparent to-neutral-900/20"></div>

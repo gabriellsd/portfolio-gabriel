@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
           </div>
           <div className="hidden sm:block w-1 h-1 bg-neutral-600 rounded-full"></div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+            <span>✅</span>
             <span>Disponível para novos projetos</span>
           </div>
         </div>
