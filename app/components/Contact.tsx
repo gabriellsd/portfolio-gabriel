@@ -114,7 +114,7 @@ const Contact: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-tech mx-auto mb-8"></div>
           <p className="text-xl text-tech-gray max-w-3xl mx-auto">
-            Pronto para colaborar em projetos de TI? Tenho experiência em infraestrutura, redes e suporte técnico!
+            Entre em contato para discutir projetos, oportunidades ou colaborações em tecnologia!
           </p>
         </div>
 

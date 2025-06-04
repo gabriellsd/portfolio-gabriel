@@ -71,7 +71,7 @@ const Skills: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-neon-blue to-neon-purple mx-auto mb-8"></div>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Experiência sólida em suporte técnico, sistemas Linux e administração de redes
+            Competências técnicas desenvolvidas ao longo de 4+ anos de experiência profissional
           </p>
         </div>
 

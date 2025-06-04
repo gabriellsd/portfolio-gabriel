@@ -52,11 +52,10 @@ const Hero: React.FC = () => {
 
         {/* Subtitle */}
         <p className="text-base md:text-lg text-tech-gray mb-12 max-w-4xl mx-auto leading-relaxed">
-          Especialista em <span className="text-primary-500 font-medium">suporte técnico</span>, 
-          <span className="text-tech-purple font-medium"> desenvolvimento de sistemas</span> e 
-          <span className="text-accent-500 font-medium"> administração de redes</span>. 
-          Proficiente em Linux, configuração de redes e segurança da informação, 
-          com foco em soluções eficientes e seguras.
+          Transformando desafios técnicos em soluções eficientes. 
+          <span className="text-primary-500 font-medium"> 4+ anos de experiência</span> em 
+          <span className="text-tech-purple font-medium"> infraestrutura de TI</span> e 
+          <span className="text-accent-500 font-medium"> suporte empresarial</span>.
         </p>
 
         {/* Location and Status */}

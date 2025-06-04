@@ -21,24 +21,22 @@ const About: React.FC = () => {
             <div className="space-y-6 text-lg leading-relaxed text-tech-gray">
               <p>
                 Sou <span className="text-primary-500 font-semibold">Gabriel Dias da Silva</span>, 
-                um Analista de Sistemas com sólida experiência em 
-                <span className="text-tech-purple font-semibold"> suporte técnico</span>, 
-                <span className="text-accent-500 font-semibold"> desenvolvimento de sistemas</span> e 
-                <span className="text-primary-600 font-semibold"> administração de redes</span>.
+                formado em Análise e Desenvolvimento de Sistemas pela 
+                <span className="text-tech-purple font-semibold"> UNICNEC</span> em dezembro de 2023.
               </p>
               
               <p>
-                Natural de <span className="text-primary-500">Campo Largo, Paraná</span>, 
-                me formei pela UNICNEC em dezembro de 2023. Desde agosto de 2020, 
-                atuo como Analista em uma empresa de grande porte, onde desenvolvi 
-                expertise em múltiplas áreas da tecnologia.
+                Desde agosto de 2020, atuo como Analista em uma empresa de grande porte, 
+                onde desenvolvi expertise sólida em <span className="text-primary-600 font-semibold">infraestrutura de TI</span>, 
+                <span className="text-accent-500 font-semibold"> redes corporativas</span> e 
+                <span className="text-tech-purple font-semibold"> suporte técnico avançado</span>.
               </p>
 
               <p>
-                Sou apaixonado por <span className="text-tech-purple">Linux</span>, 
-                <span className="text-accent-500"> segurança da informação</span> e 
-                <span className="text-primary-600"> desenvolvimento de soluções eficientes</span>. 
-                Acredito que a tecnologia deve ser segura, eficiente e acessível.
+                Apaixonado por <span className="text-tech-purple">tecnologia open source</span> e 
+                <span className="text-accent-500"> segurança da informação</span>, 
+                busco constantemente aprimorar minhas habilidades para entregar 
+                <span className="text-primary-600"> soluções robustas e eficientes</span>.
               </p>
             </div>
 
@@ -78,19 +76,19 @@ const About: React.FC = () => {
                 
                 <div className="space-y-2 text-sm text-tech-gray">
                   <div className="flex items-center justify-center gap-2">
-                    <span>📍</span>
-                    <span>Campo Largo, Paraná</span>
-                  </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <span>🎂</span>
-                    <span>23/05/2000</span>
+                    <span>💼</span>
+                    <span>Analista de Sistemas</span>
                   </div>
                   <div className="flex items-center justify-center gap-2">
                     <span>🎓</span>
-                    <span>UNICNEC - 2023</span>
+                    <span>UNICNEC - ADS 2023</span>
                   </div>
                   <div className="flex items-center justify-center gap-2">
-                    <span>💼</span>
+                    <span>⚡</span> 
+                    <span>4+ anos de experiência</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-2">
+                    <span>✅</span>
                     <span>Disponível para projetos</span>
                   </div>
                 </div>
