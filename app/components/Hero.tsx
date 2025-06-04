@@ -99,12 +99,6 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Subtle Floating Elements */}
-      <div className="absolute top-20 left-10 w-3 h-3 bg-primary-500/30 rounded-full animate-float opacity-40"></div>
-      <div className="absolute top-40 right-20 w-4 h-4 bg-tech-purple/20 rounded-full float opacity-30" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute bottom-40 left-20 w-2 h-2 bg-accent-500/25 rounded-full animate-float opacity-35" style={{ animationDelay: '4s' }}></div>
-      <div className="absolute bottom-20 right-10 w-3 h-3 bg-primary-500/20 rounded-full animate-float opacity-25" style={{ animationDelay: '6s' }}></div>
     </section>
   )
 }

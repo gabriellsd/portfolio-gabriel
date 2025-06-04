@@ -96,11 +96,6 @@ const About: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-6 h-6 bg-primary-500/30 rounded-full animate-float opacity-40"></div>
-            <div className="absolute -bottom-4 -left-4 w-4 h-4 bg-tech-purple/30 rounded-full animate-float opacity-30" style={{ animationDelay: '2s' }}></div>
-            <div className="absolute top-1/2 -right-8 w-3 h-3 bg-accent-500/30 rounded-full animate-float opacity-35" style={{ animationDelay: '4s' }}></div>
           </div>
         </div>
 
