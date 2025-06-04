@@ -42,9 +42,6 @@ const Hero: React.FC = () => {
         <div className="text-xl md:text-3xl mb-4 h-12 flex items-center justify-center">
           <span className="text-primary-500 subtle-glow font-medium">
             {displayText}
-            {currentIndex < fullText.length && (
-              <span className="animate-pulse text-tech-purple opacity-75">|</span>
-            )}
           </span>
         </div>
 
