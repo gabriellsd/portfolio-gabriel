@@ -1,77 +1,96 @@
 import { useState, useEffect } from 'react';
 import { useReveal } from './useReveal';
 import {
-  Menu, X, GitBranch, Search, Zap,
-  Mail, Linkedin, Github, ExternalLink,
+  Menu, X, GitBranch, Search, Zap, Shield,
+  Mail, Linkedin, Github, ExternalLink, Network,
 } from 'lucide-react';
 
 const gabriel = {
   nome: 'Gabriel Dias',
   titulo: 'Analista de Sistemas',
+  cidade: 'Campo Largo, Paraná',
   email: 'gabriel.dias@email.com',
-  linkedin: 'https://linkedin.com/in/gabrieldias',
-  github: 'https://github.com/gabrieldias',
+  linkedin: 'https://linkedin.com/in/gabriellsd',
+  github: 'https://github.com/gabriellsd',
   foto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80',
 };
 
-const techStack = ['Python', 'JavaScript', 'AWS', 'Docker', 'PostgreSQL'];
+const techStack = ['Linux', 'Redes', 'Windows Server', 'Firewall', 'Hardware', 'Suporte N2'];
 
 const specialties = [
   {
-    icon: GitBranch,
-    title: 'Arquitetura',
-    desc: 'Desenho de sistemas distribuídos e microserviços.',
+    icon: Network,
+    title: 'Redes',
+    desc: 'Configuração e gerenciamento de roteadores, switches, firewalls e VLANs.',
   },
   {
     icon: Search,
-    title: 'Análise',
-    desc: 'Levantamento de requisitos e modelagem de dados.',
+    title: 'Análise de Sistemas',
+    desc: 'Desenvolvimento, integração e validação de sistemas de informação.',
   },
   {
-    icon: Zap,
-    title: 'Otimização',
-    desc: 'Melhoria de performance e refatoração de sistemas.',
+    icon: Shield,
+    title: 'Segurança',
+    desc: 'Implementação de políticas de segurança, monitoramento de ameaças e proteção de infraestrutura.',
   },
 ];
 
 const experience = [
   {
-    period: '2021 - Presente',
-    company: 'Empresa de Tecnologia',
-    role: 'Analista de Sistemas Sênior',
-    desc: 'Liderança técnica no desenvolvimento de plataforma ERP, implementando melhorias que reduziram o tempo de processamento de dados em 40%.',
+    period: 'Nov 2021 - Presente',
+    company: 'Supermercado Colatusso · Campo Largo, PR',
+    role: 'Analista de Sistemas',
+    desc: 'Desenvolvimento e implementação de sistemas de informação. Integração de diferentes sistemas e aplicações. Testes, validação e treinamento de usuários finais com criação de documentação técnica.',
     current: true,
   },
   {
-    period: '2018 - 2021',
-    company: 'Consultoria Logística',
-    role: 'Desenvolvedor Full Stack',
-    desc: 'Responsável pela criação de módulos de rastreamento em tempo real utilizando Node.js e integrações com APIs de terceiros.',
+    period: 'Ago 2020 - Out 2021',
+    company: 'Supermercado Colatusso · Campo Largo, PR',
+    role: 'Analista de Suporte Computacional',
+    desc: 'Suporte técnico a usuários, instalação e configuração de hardware e software, administração de redes LAN/WAN, gerenciamento de contas e permissões, manutenção de servidores e implementação de políticas de segurança.',
+    current: false,
+  },
+  {
+    period: 'Mai 2019 - Ago 2020',
+    company: 'Supermercado Colatusso · Campo Largo, PR',
+    role: 'Assistente Administrativo',
+    desc: 'Apoio administrativo às operações internas da empresa.',
+    current: false,
+  },
+  {
+    period: 'Jul 2017 - Mai 2019',
+    company: 'Supermercado Colatusso · Campo Largo, PR',
+    role: 'Repositor',
+    desc: 'Organização e reposição de mercadorias.',
+    current: false,
+  },
+  {
+    period: 'Jul 2015 - Jun 2017',
+    company: 'Supermercado Colatusso · Campo Largo, PR',
+    role: 'Aprendiz Comercial',
+    desc: 'Programa de aprendizagem comercial, início da trajetória profissional.',
     current: false,
   },
 ];
 
+const certifications = [
+  { name: 'Linux NetAdmin SecAdmin II', school: 'Elaborata Informática', year: '2022', hours: 36 },
+  { name: 'Linux NetAdmin SecAdmin I', school: 'Elaborata Informática', year: '2022', hours: 36 },
+  { name: 'Linux SysAdmin II', school: 'Elaborata Informática', year: '2021', hours: 36 },
+  { name: 'Linux SysAdmin I', school: 'Elaborata Informática', year: '2021', hours: 36 },
+  { name: 'Switches e Roteadores I', school: 'Elaborata Informática', year: '2021', hours: 45 },
+  { name: 'Reparo de Placa Notebook e Desktop', school: 'Elaborata Informática', year: '2021', hours: 24 },
+  { name: 'Analista de Suporte II', school: 'Elaborata Informática', year: '2021', hours: 30 },
+  { name: 'Analista de Suporte I', school: 'Elaborata Informática', year: '2021', hours: 30 },
+];
+
 const projects = [
   {
-    title: 'Smart Analytics Dashboard',
-    desc: 'Ferramenta de visualização de dados para o setor financeiro integrada com Python e React.',
+    title: 'Em breve',
+    desc: 'Projetos em desenvolvimento. Acompanhe meu GitHub para novidades.',
     image: 'https://images.unsplash.com/photo-1551288049-bbbda536339a?fit=crop&w=800&q=80',
-    tags: ['Python', 'React'],
-    link: '#',
-  },
-  {
-    title: 'Cloud Migrate Automator',
-    desc: 'Scripts de automação para migração de servidores on-premise para AWS utilizando Terraform.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&w=800&q=80',
-    tags: ['Terraform', 'AWS'],
-    link: '#',
-  },
-  {
-    title: 'Inventory Mobile API',
-    desc: 'API REST robusta para controle de estoque com suporte a leitura de QR Code em tempo real.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?fit=crop&w=800&q=80',
-    tags: ['Node.js', 'Redis'],
-    link: '#',
+    tags: ['Linux', 'Redes'],
+    link: gabriel.github,
   },
 ];
 
@@ -79,6 +98,7 @@ const navLinks = [
   { name: 'Início', href: '#inicio' },
   { name: 'Sobre', href: '#sobre' },
   { name: 'Experiência', href: '#experiencia' },
+  { name: 'Certificações', href: '#certificacoes' },
   { name: 'Projetos', href: '#projetos' },
 ];
 
@@ -96,6 +116,7 @@ export default function App() {
   const stackRef = useReveal(0);
   const aboutRef = useReveal(0);
   const expRef = useReveal(0);
+  const certRef = useReveal(0);
   const projectsRef = useReveal(0);
   const contactRef = useReveal(0);
 
@@ -179,18 +200,19 @@ export default function App() {
               {gabriel.nome}
             </h1>
             <p className="text-2xl md:text-3xl text-slate-600 font-light">
-              {gabriel.titulo} focado em{' '}
+              {gabriel.titulo} com foco em{' '}
               <span className="font-semibold text-slate-800 underline decoration-blue-500">
-                soluções eficientes
+                redes, sistemas
               </span>{' '}
-              e escaláveis.
+              e segurança de TI.
             </p>
+            <p className="text-slate-500 text-base">{gabriel.cidade}</p>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
               <a
-                href="#projetos"
+                href="#experiencia"
                 className="bg-slate-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-slate-800 transition shadow-lg"
               >
-                Ver Projetos
+                Ver Experiência
               </a>
               <a
                 href="#contato"
@@ -238,10 +260,12 @@ export default function App() {
         <div ref={aboutRef} className="reveal max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold">Sobre Mim</h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Com sólida experiência em análise e desenvolvimento de sistemas, transformo
-            requisitos complexos em arquiteturas de software robustas. Meu foco é entender
-            a dor do negócio e traduzi-la em tecnologia que agrega valor real, sempre
-            prezando pela qualidade do código e escalabilidade.
+            Analista de Sistemas em Campo Largo, PR, com trajetória construída desde 2015 na
+            mesma empresa, crescendo do início da carreira até a área de TI. Sou formado em
+            Análise e Desenvolvimento de Sistemas pelo Centro Universitário Cenecista de Osório
+            (2020–2023) e possuo certificações em Linux, redes, segurança e suporte técnico.
+            Atuo no desenvolvimento e integração de sistemas, administração de redes LAN/WAN e
+            implementação de políticas de segurança de TI.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
             {specialties.map(({ icon: Icon, title, desc }) => (
@@ -286,8 +310,33 @@ export default function App() {
         </div>
       </section>
 
+      {/* Certificações */}
+      <section id="certificacoes" className="py-24 px-4 bg-white">
+        <div ref={certRef} className="reveal max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 text-center">Certificações</h2>
+          <p className="text-center text-slate-500 mb-12">Elaborata Informática · Todas com média 100</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {certifications.map(cert => (
+              <div
+                key={cert.name}
+                className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl hover:-translate-y-0.5 transition duration-300"
+              >
+                <div className="bg-blue-100 text-blue-700 rounded-xl p-2 text-xs font-bold text-center min-w-[52px]">
+                  <div>{cert.hours}h</div>
+                  <div>{cert.year}</div>
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800 leading-snug">{cert.name}</p>
+                  <p className="text-xs text-slate-500 mt-1">{cert.school}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Projetos */}
-      <section id="projetos" className="py-24 px-4 bg-white">
+      <section id="projetos" className="py-24 px-4 bg-slate-50">
         <div ref={projectsRef} className="reveal max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Projetos em Destaque</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -354,7 +403,7 @@ export default function App() {
               className="flex items-center justify-center space-x-4 p-6 bg-slate-800 rounded-2xl hover:bg-slate-700 transition"
             >
               <Linkedin className="text-blue-400" size={24} />
-              <span className="font-medium">linkedin.com/in/gabrieldias</span>
+              <span className="font-medium">linkedin.com/in/gabriellsd</span>
             </a>
           </div>
         </div>
