@@ -213,7 +213,7 @@ export default function App() {
             : 'bg-transparent border-transparent'
         }`}
       >
-        <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+        <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-end">
           <div className="hidden md:flex items-center space-x-8 font-medium">
             {navLinks.map(link => (
               <a
