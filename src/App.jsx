@@ -125,6 +125,13 @@ const projects = [
     wip: true,
   },
   {
+    title: 'Painel de Senha',
+    desc: 'Sistema de gerenciamento de senhas para atendimento no supermercado. Painel físico em Tkinter (tela cheia, som de alerta) + painel web em Flask com histórico, estatísticas em tempo real, gráficos e backup automático do SQLite.',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?fit=crop&w=800&q=80',
+    tags: ['Python', 'Flask', 'Tkinter', 'SQLite'],
+    link: 'https://github.com/gabriellsd/painel-senha',
+  },
+  {
     title: 'Implantação GLPI',
     desc: 'Implantei o GLPI como sistema universal de abertura e controle de chamados de TI na empresa (abril/2023). Substituiu processos manuais e padronizou o atendimento com histórico, categorias e SLA.',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?fit=crop&w=800&q=80',
