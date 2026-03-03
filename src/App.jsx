@@ -116,6 +116,15 @@ const projects = [
     demo: 'https://portfolio-luana-sakovicz.vercel.app',
   },
   {
+    title: 'GDFinances',
+    desc: 'Sistema pessoal de gestão financeira com autenticação Firebase, controle de receitas/despesas, gráficos com Chart.js, metas financeiras e PWA com suporte offline via Service Worker e IndexedDB. Em desenvolvimento.',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?fit=crop&w=800&q=80',
+    tags: ['JavaScript', 'Firebase', 'PWA'],
+    link: 'https://github.com/gabriellsd/GDFinances',
+    demo: 'https://gabriellsd.github.io/GDFinances',
+    wip: true,
+  },
+  {
     title: 'Implantação GLPI',
     desc: 'Implantei o GLPI como sistema universal de abertura e controle de chamados de TI na empresa (abril/2023). Substituiu processos manuais e padronizou o atendimento com histórico, categorias e SLA.',
     image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?fit=crop&w=800&q=80',
@@ -375,12 +384,17 @@ export default function App() {
                 key={project.title}
                 className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1.5 transition duration-300 flex flex-col"
               >
-                <div className="h-48 bg-slate-200 overflow-hidden">
+                <div className="h-48 bg-slate-200 overflow-hidden relative">
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover hover:scale-105 transition duration-500"
                   />
+                  {project.wip && (
+                    <span className="absolute top-3 right-3 bg-amber-400 text-amber-900 text-xs font-bold px-2 py-1 rounded-full">
+                      Em desenvolvimento
+                    </span>
+                  )}
                 </div>
                 <div className="p-6 space-y-4 flex flex-col flex-1">
                   <h3 className="text-xl font-bold">{project.title}</h3>
