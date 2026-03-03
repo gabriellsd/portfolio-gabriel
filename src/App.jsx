@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useReveal } from './useReveal';
 import {
   Menu, X, GitBranch, Search, Zap, Shield,
-  Mail, Linkedin, Github, ExternalLink, Network, Instagram,
+  Mail, Linkedin, Github, ExternalLink, Network, Instagram, Camera,
 } from 'lucide-react';
 
 const gabriel = {
@@ -16,7 +16,7 @@ const gabriel = {
   foto: '/gabriel-foto.png',
 };
 
-const techStack = ['Python', 'JavaScript', 'Node.js', 'Electron', 'React', 'Linux', 'SQLite', 'PowerShell'];
+const techStack = ['Python', 'JavaScript', 'Node.js', 'Electron', 'React', 'Linux', 'Hikvision', 'Digifort'];
 
 const specialties = [
   {
@@ -34,6 +34,11 @@ const specialties = [
     title: 'Segurança',
     desc: 'Implementação de políticas de segurança, monitoramento de ameaças e proteção de infraestrutura.',
   },
+  {
+    icon: Camera,
+    title: 'CFTV',
+    desc: 'Gestão completa de redes de câmeras com Digifort, HikCentral, Intelbras e Hikvision.',
+  },
 ];
 
 const experience = [
@@ -41,7 +46,7 @@ const experience = [
     period: 'Nov 2021 - Presente',
     company: 'Supermercado Colatusso · Campo Largo, PR',
     role: 'Analista de Sistemas',
-    desc: 'Desenvolvimento e implementação de sistemas internos de TI. Implantação do GLPI como sistema universal de chamados (abr/2023). Criação de ferramentas desktop em Python e Node.js/Electron para automação de rede, monitoramento de máquinas e controle de backup. Integração de sistemas e documentação técnica.',
+    desc: 'Desenvolvimento e implementação de sistemas internos de TI. Implantação do GLPI como sistema universal de chamados (abr/2023). Gestão completa da rede de câmeras com Digifort, HikCentral, Intelbras e Hikvision. Criação de ferramentas desktop em Python e Node.js/Electron para automação de rede, monitoramento e backup. Integração de sistemas e documentação técnica.',
     current: true,
   },
   {
@@ -315,10 +320,10 @@ export default function App() {
           <p className="text-lg text-slate-600 leading-relaxed">
             Analista de Sistemas em Campo Largo, PR, com trajetória construída desde 2015 na
             mesma empresa. Formado em Análise e Desenvolvimento de Sistemas (CNEC Osório, 2020–2023)
-            e certificado em Linux, redes e segurança. Além da infraestrutura, desenvolvo ferramentas
-            internas em Python e Node.js/Electron para resolver problemas reais do dia a dia — como
-            sistemas de monitoramento, backup automatizado e configuração de rede. Implantei o GLPI
-            como sistema de chamados da empresa em 2023 e também crio sites profissionais para clientes.
+            e certificado em Linux, redes e segurança. Gerencio toda a infraestrutura de TI, incluindo
+            a rede de câmeras (Digifort, HikCentral, Intelbras, Hikvision). Além disso, desenvolvo
+            ferramentas internas em Python e Node.js/Electron para automatizar tarefas do dia a dia,
+            implantei o GLPI como sistema de chamados em 2023 e crio sites profissionais para clientes.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
             {specialties.map(({ icon: Icon, title, desc }) => (
