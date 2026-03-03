@@ -179,13 +179,13 @@ export default function App() {
   const contactRef = useReveal(0);
 
   return (
-    <div className="bg-slate-50 text-slate-900">
+    <div className="bg-slate-100 text-slate-900">
 
       {/* Nav */}
       <header
         className={`fixed w-full z-50 transition-all duration-300 border-b ${
           scrolled
-            ? 'bg-white/90 backdrop-blur-md border-slate-200 shadow-sm'
+            ? 'bg-slate-100/95 backdrop-blur-md border-slate-200 shadow-sm'
             : 'bg-transparent border-transparent'
         }`}
       >
@@ -222,7 +222,7 @@ export default function App() {
         </nav>
 
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-2 shadow-lg">
+          <div className="md:hidden bg-slate-100 border-t border-slate-200 px-4 py-4 space-y-2 shadow-lg">
             {navLinks.map(link => (
               <a
                 key={link.href}
@@ -289,7 +289,7 @@ export default function App() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-xl flex items-center space-x-3">
+            <div className="absolute -bottom-4 -left-4 bg-slate-50 p-4 rounded-xl shadow-xl flex items-center space-x-3">
               <div className="bg-green-500 w-3 h-3 rounded-full animate-pulse" />
               <span className="font-medium text-sm">Disponível para novos projetos</span>
             </div>
@@ -314,7 +314,7 @@ export default function App() {
       </section>
 
       {/* Sobre */}
-      <section id="sobre" className="py-24 px-4 bg-white">
+      <section id="sobre" className="py-24 px-4 bg-slate-50">
         <div ref={aboutRef} className="reveal max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold">Sobre Mim</h2>
           <p className="text-lg text-slate-600 leading-relaxed">
@@ -333,7 +333,7 @@ export default function App() {
             {specialties.map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="p-6 bg-slate-50 rounded-2xl hover:-translate-y-1 transition duration-300"
+                className="p-6 bg-slate-100 rounded-2xl hover:-translate-y-1 transition duration-300"
               >
                 <Icon className="text-blue-600 mb-4 mx-auto md:mx-0" size={28} />
                 <h3 className="font-bold mb-2">{title}</h3>
@@ -345,7 +345,7 @@ export default function App() {
       </section>
 
       {/* Experiência */}
-      <section id="experiencia" className="py-24 px-4 bg-slate-50">
+      <section id="experiencia" className="py-24 px-4 bg-slate-100">
         <div ref={expRef} className="reveal max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Trajetória Profissional</h2>
           <div className="space-y-12">
@@ -373,7 +373,7 @@ export default function App() {
       </section>
 
       {/* Certificações */}
-      <section id="certificacoes" className="py-24 px-4 bg-white">
+      <section id="certificacoes" className="py-24 px-4 bg-slate-50">
         <div ref={certRef} className="reveal max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold mb-4 text-center">Certificações</h2>
           <p className="text-center text-slate-500 mb-12">Elaborata Informática · Todas com média 100</p>
@@ -381,7 +381,7 @@ export default function App() {
             {certifications.map(cert => (
               <div
                 key={cert.name}
-                className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl hover:-translate-y-0.5 transition duration-300"
+                className="flex items-start gap-4 p-5 bg-slate-100 rounded-2xl hover:-translate-y-0.5 transition duration-300"
               >
                 <div className="bg-blue-100 text-blue-700 rounded-xl p-2 text-xs font-bold text-center min-w-[52px]">
                   <div>{cert.hours}h</div>
@@ -398,14 +398,14 @@ export default function App() {
       </section>
 
       {/* Projetos */}
-      <section id="projetos" className="py-24 px-4 bg-slate-50">
+      <section id="projetos" className="py-24 px-4 bg-slate-100">
         <div ref={projectsRef} className="reveal max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold mb-12 text-center">Projetos em Destaque</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map(project => (
               <div
                 key={project.title}
-                className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1.5 transition duration-300 flex flex-col"
+                className="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1.5 transition duration-300 flex flex-col"
               >
                 <div className="h-48 bg-slate-200 overflow-hidden relative">
                   <img
