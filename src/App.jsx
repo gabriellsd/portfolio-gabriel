@@ -190,10 +190,6 @@ export default function App() {
         }`}
       >
         <nav className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-          <span className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-            GD.dev
-          </span>
-
           <div className="hidden md:flex items-center space-x-8 font-medium">
             {navLinks.map(link => (
               <a
