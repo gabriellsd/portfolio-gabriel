@@ -16,7 +16,7 @@ const gabriel = {
   foto: '/gabriel-foto.png',
 };
 
-const techStack = ['Python', 'JavaScript', 'Node.js', 'Electron', 'React', 'Linux', 'Hikvision', 'Digifort'];
+const techStack = ['Python', 'JavaScript', 'Node.js', 'Electron', 'React', 'Linux', 'Hikvision', 'IA / LLMs'];
 
 const specialties = [
   {
@@ -325,7 +325,9 @@ export default function App() {
             Formado em Análise e Desenvolvimento de Sistemas (CNEC Osório, 2020–2023) e com
             certificações em Linux e redes, também desenvolvo ferramentas internas em Python e
             Electron para resolver problemas reais — sistemas de monitoramento, backup automatizado,
-            gestão de proxy e painel de senhas. Em paralelo, crio sites profissionais para clientes.
+            gestão de proxy e painel de senhas. Em paralelo, crio sites profissionais para clientes
+            e venho explorando o uso de Inteligência Artificial como ferramenta de apoio no
+            desenvolvimento e na análise de sistemas.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
             {specialties.map(({ icon: Icon, title, desc }) => (
