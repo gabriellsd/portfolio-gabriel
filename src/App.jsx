@@ -2,17 +2,18 @@ import { useState, useEffect } from 'react';
 import { useReveal } from './useReveal';
 import {
   Menu, X, GitBranch, Search, Zap, Shield,
-  Mail, Linkedin, Github, ExternalLink, Network,
+  Mail, Linkedin, Github, ExternalLink, Network, Instagram,
 } from 'lucide-react';
 
 const gabriel = {
   nome: 'Gabriel Dias',
   titulo: 'Analista de Sistemas',
   cidade: 'Campo Largo, Paraná',
-  email: 'gabriel.dias@email.com',
-  linkedin: 'https://linkedin.com/in/gabriellsd',
+  email: 'gabrielsilvadis@outlook.com',
+  linkedin: 'https://www.linkedin.com/in/gabriel-dias-676a68266/',
   github: 'https://github.com/gabriellsd',
-  foto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80',
+  instagram: 'https://www.instagram.com/gabriellsd_',
+  foto: '/gabriel-foto.png',
 };
 
 const techStack = ['Linux', 'Redes', 'Windows Server', 'Firewall', 'Hardware', 'Suporte N2'];
@@ -388,22 +389,31 @@ export default function App() {
           <p className="text-slate-400 mb-12">
             Estou sempre aberto a novas oportunidades e desafios técnicos interessantes.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <a
               href={`mailto:${gabriel.email}`}
-              className="flex items-center justify-center space-x-4 p-6 bg-slate-800 rounded-2xl hover:bg-slate-700 transition"
+              className="flex items-center justify-center space-x-3 p-6 bg-slate-800 rounded-2xl hover:bg-slate-700 transition"
             >
-              <Mail className="text-blue-400" size={24} />
-              <span className="font-medium">{gabriel.email}</span>
+              <Mail className="text-blue-400 shrink-0" size={22} />
+              <span className="font-medium text-sm break-all">{gabriel.email}</span>
             </a>
             <a
               href={gabriel.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center space-x-4 p-6 bg-slate-800 rounded-2xl hover:bg-slate-700 transition"
+              className="flex items-center justify-center space-x-3 p-6 bg-slate-800 rounded-2xl hover:bg-slate-700 transition"
             >
-              <Linkedin className="text-blue-400" size={24} />
-              <span className="font-medium">linkedin.com/in/gabriellsd</span>
+              <Linkedin className="text-blue-400 shrink-0" size={22} />
+              <span className="font-medium text-sm">LinkedIn</span>
+            </a>
+            <a
+              href={gabriel.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center justify-center space-x-3 p-6 bg-slate-800 rounded-2xl hover:bg-slate-700 transition"
+            >
+              <Instagram className="text-blue-400 shrink-0" size={22} />
+              <span className="font-medium text-sm">@gabriellsd_</span>
             </a>
           </div>
         </div>
@@ -411,7 +421,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-8 bg-slate-900 border-t border-slate-800 text-center text-slate-500 text-sm">
-        <div className="flex items-center justify-center gap-4 mb-3">
+        <div className="flex items-center justify-center gap-5 mb-3">
           <a
             href={gabriel.github}
             target="_blank"
@@ -429,6 +439,15 @@ export default function App() {
             aria-label="LinkedIn"
           >
             <Linkedin size={18} />
+          </a>
+          <a
+            href={gabriel.instagram}
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-slate-300 transition"
+            aria-label="Instagram"
+          >
+            <Instagram size={18} />
           </a>
           <a
             href={`mailto:${gabriel.email}`}
