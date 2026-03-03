@@ -318,12 +318,14 @@ export default function App() {
         <div ref={aboutRef} className="reveal max-w-4xl mx-auto text-center space-y-8">
           <h2 className="text-3xl font-bold">Sobre Mim</h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Analista de Sistemas em Campo Largo, PR, com trajetória construída desde 2015 na
-            mesma empresa. Formado em Análise e Desenvolvimento de Sistemas (CNEC Osório, 2020–2023)
-            e certificado em Linux, redes e segurança. Gerencio toda a infraestrutura de TI, incluindo
-            a rede de câmeras (Digifort, HikCentral, Intelbras, Hikvision). Além disso, desenvolvo
-            ferramentas internas em Python e Node.js/Electron para automatizar tarefas do dia a dia,
-            implantei o GLPI como sistema de chamados em 2023 e crio sites profissionais para clientes.
+            Comecei minha trajetória profissional em 2015 e, ao longo dos anos, evoluí do
+            operacional até assumir a área de TI de uma empresa de grande porte em Campo Largo, PR.
+            Hoje gerencio toda a infraestrutura: redes LAN/WAN, servidores, segurança e um sistema
+            completo de CFTV com câmeras Hikvision e Intelbras, operados via Digifort e HikCentral.
+            Formado em Análise e Desenvolvimento de Sistemas (CNEC Osório, 2020–2023) e com
+            certificações em Linux e redes, também desenvolvo ferramentas internas em Python e
+            Electron para resolver problemas reais — sistemas de monitoramento, backup automatizado,
+            gestão de proxy e painel de senhas. Em paralelo, crio sites profissionais para clientes.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
             {specialties.map(({ icon: Icon, title, desc }) => (
