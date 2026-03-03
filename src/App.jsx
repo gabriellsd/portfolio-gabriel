@@ -132,6 +132,14 @@ const projects = [
     demo: 'https://portfolio-luana-sakovicz.vercel.app',
   },
   {
+    title: 'Controle de Estoque',
+    desc: 'Sistema desktop em Python/Tkinter com login seguro (hash SHA-256), CRUD de produtos, entrada/saída com histórico, dashboard, relatórios exportáveis em PDF/Excel, importação por XML e tema claro/escuro.',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?fit=crop&w=800&q=80',
+    tags: ['Python', 'Tkinter', 'SQLite'],
+    link: 'https://github.com/gabriellsd/controle_estoque',
+    wip: true,
+  },
+  {
     title: 'GDFinances',
     desc: 'Sistema pessoal de gestão financeira com autenticação Firebase, controle de receitas/despesas, gráficos com Chart.js, metas financeiras e PWA com suporte offline via Service Worker e IndexedDB. Em desenvolvimento.',
     // finanças / gráficos / planejamento
