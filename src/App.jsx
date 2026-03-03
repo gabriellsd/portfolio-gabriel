@@ -324,7 +324,7 @@ export default function App() {
             completo de CFTV com câmeras Hikvision e Intelbras, operados via Digifort e HikCentral.
             Formado em Análise e Desenvolvimento de Sistemas (CNEC Osório, 2020–2023) e com
             certificações em Linux e redes, também desenvolvo ferramentas internas em Python e
-            Electron para resolver problemas reais — sistemas de monitoramento, backup automatizado,
+            Electron para resolver problemas reais, sistemas de monitoramento, backup automatizado,
             gestão de proxy e painel de senhas. Em paralelo, crio sites profissionais para clientes
             e venho explorando o uso de Inteligência Artificial como ferramenta de apoio no
             desenvolvimento e na análise de sistemas.
