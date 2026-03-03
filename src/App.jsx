@@ -89,28 +89,32 @@ const projects = [
   {
     title: 'ConfNet',
     desc: 'App desktop em Electron para gerenciar configurações de proxy e interfaces de rede no Windows. Suporte a múltiplas empresas/filiais, banco SQLite, logs detalhados e execução automática como administrador.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&w=800&q=80',
+    // roteadores, cabos de rede, infraestrutura
+    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&w=800&q=80',
     tags: ['Electron', 'Node.js', 'SQLite'],
     link: 'https://github.com/gabriellsd/ConfNet',
   },
   {
     title: 'Rede Vigia',
     desc: 'Sistema de monitoramento de rede em Python com interface gráfica (PyQt6). Monitora máquinas e programas em tempo real com alertas por e-mail, ferramentas de diagnóstico (ping, traceroute, telnet) e temas claro/escuro.',
-    image: 'https://images.unsplash.com/photo-1551288049-bbbda536339a?fit=crop&w=800&q=80',
+    // múltiplos monitores / sala de operações
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?fit=crop&w=800&q=80',
     tags: ['Python', 'PyQt6', 'SQLite'],
     link: 'https://github.com/gabriellsd/rede_vigia',
   },
   {
     title: 'Backup File Shield',
     desc: 'Sistema profissional de backup com interface PyQt6. Backup incremental inteligente, agendamento automático (diário, semanal, mensal), restauração seletiva, relatórios CSV/PDF e notificações por e-mail.',
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?fit=crop&w=800&q=80',
+    // HDs / armazenamento de dados
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&w=800&q=80',
     tags: ['Python', 'PyQt6', 'SQLite'],
     link: 'https://github.com/gabriellsd/backup-file-shield',
   },
   {
     title: 'Portfolio Luana Sakovicz',
     desc: 'Site profissional desenvolvido para psicóloga clínica. Stack moderna com React, Vite e Tailwind CSS. Animações com IntersectionObserver, SEO completo com Open Graph e deploy automático na Vercel.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80',
+    // design de site / web
+    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?fit=crop&w=800&q=80',
     tags: ['React', 'Vite', 'Tailwind'],
     link: 'https://github.com/gabriellsd/portfolio-luana',
     demo: 'https://portfolio-luana-sakovicz.vercel.app',
@@ -118,6 +122,7 @@ const projects = [
   {
     title: 'GDFinances',
     desc: 'Sistema pessoal de gestão financeira com autenticação Firebase, controle de receitas/despesas, gráficos com Chart.js, metas financeiras e PWA com suporte offline via Service Worker e IndexedDB. Em desenvolvimento.',
+    // finanças / gráficos / planejamento
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?fit=crop&w=800&q=80',
     tags: ['JavaScript', 'Firebase', 'PWA'],
     link: 'https://github.com/gabriellsd/GDFinances',
@@ -127,14 +132,16 @@ const projects = [
   {
     title: 'Painel de Senha',
     desc: 'Sistema de gerenciamento de senhas para atendimento no supermercado. Painel físico em Tkinter (tela cheia, som de alerta) + painel web em Flask com histórico, estatísticas em tempo real, gráficos e backup automático do SQLite.',
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?fit=crop&w=800&q=80',
+    // fila de atendimento / balcão
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?fit=crop&w=800&q=80',
     tags: ['Python', 'Flask', 'Tkinter', 'SQLite'],
     link: 'https://github.com/gabriellsd/painel-senha',
   },
   {
     title: 'Implantação GLPI',
     desc: 'Implantei o GLPI como sistema universal de abertura e controle de chamados de TI na empresa (abril/2023). Substituiu processos manuais e padronizou o atendimento com histórico, categorias e SLA.',
-    image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?fit=crop&w=800&q=80',
+    // suporte técnico / helpdesk
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fit=crop&w=800&q=80',
     tags: ['GLPI', 'ITSM', 'Linux'],
     link: null,
   },
