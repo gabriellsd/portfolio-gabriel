@@ -16,7 +16,7 @@ const gabriel = {
   foto: '/gabriel-foto.png',
 };
 
-const techStack = ['Linux', 'Redes', 'Windows Server', 'Firewall', 'Hardware', 'Suporte N2'];
+const techStack = ['Python', 'JavaScript', 'Node.js', 'Electron', 'React', 'Linux', 'SQLite', 'PowerShell'];
 
 const specialties = [
   {
@@ -41,7 +41,7 @@ const experience = [
     period: 'Nov 2021 - Presente',
     company: 'Supermercado Colatusso · Campo Largo, PR',
     role: 'Analista de Sistemas',
-    desc: 'Desenvolvimento e implementação de sistemas de informação. Integração de diferentes sistemas e aplicações. Testes, validação e treinamento de usuários finais com criação de documentação técnica.',
+    desc: 'Desenvolvimento e implementação de sistemas internos de TI. Implantação do GLPI como sistema universal de chamados (abr/2023). Criação de ferramentas desktop em Python e Node.js/Electron para automação de rede, monitoramento de máquinas e controle de backup. Integração de sistemas e documentação técnica.',
     current: true,
   },
   {
@@ -87,11 +87,40 @@ const certifications = [
 
 const projects = [
   {
-    title: 'Em breve',
-    desc: 'Projetos em desenvolvimento. Acompanhe meu GitHub para novidades.',
+    title: 'ConfNet',
+    desc: 'App desktop em Electron para gerenciar configurações de proxy e interfaces de rede no Windows. Suporte a múltiplas empresas/filiais, banco SQLite, logs detalhados e execução automática como administrador.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&w=800&q=80',
+    tags: ['Electron', 'Node.js', 'SQLite'],
+    link: 'https://github.com/gabriellsd/ConfNet',
+  },
+  {
+    title: 'Rede Vigia',
+    desc: 'Sistema de monitoramento de rede em Python com interface gráfica (PyQt6). Monitora máquinas e programas em tempo real com alertas por e-mail, ferramentas de diagnóstico (ping, traceroute, telnet) e temas claro/escuro.',
     image: 'https://images.unsplash.com/photo-1551288049-bbbda536339a?fit=crop&w=800&q=80',
-    tags: ['Linux', 'Redes'],
-    link: gabriel.github,
+    tags: ['Python', 'PyQt6', 'SQLite'],
+    link: 'https://github.com/gabriellsd/rede_vigia',
+  },
+  {
+    title: 'Backup File Shield',
+    desc: 'Sistema profissional de backup com interface PyQt6. Backup incremental inteligente, agendamento automático (diário, semanal, mensal), restauração seletiva, relatórios CSV/PDF e notificações por e-mail.',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?fit=crop&w=800&q=80',
+    tags: ['Python', 'PyQt6', 'SQLite'],
+    link: 'https://github.com/gabriellsd/backup-file-shield',
+  },
+  {
+    title: 'Portfolio Luana Sakovicz',
+    desc: 'Site profissional desenvolvido para psicóloga clínica. Stack moderna com React, Vite e Tailwind CSS. Animações com IntersectionObserver, SEO completo com Open Graph e deploy automático na Vercel.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=800&q=80',
+    tags: ['React', 'Vite', 'Tailwind'],
+    link: 'https://github.com/gabriellsd/portfolio-luana',
+    demo: 'https://portfolio-luana-sakovicz.vercel.app',
+  },
+  {
+    title: 'Implantação GLPI',
+    desc: 'Implantei o GLPI como sistema universal de abertura e controle de chamados de TI na empresa (abril/2023). Substituiu processos manuais e padronizou o atendimento com histórico, categorias e SLA.',
+    image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?fit=crop&w=800&q=80',
+    tags: ['GLPI', 'ITSM', 'Linux'],
+    link: null,
   },
 ];
 
@@ -262,11 +291,11 @@ export default function App() {
           <h2 className="text-3xl font-bold">Sobre Mim</h2>
           <p className="text-lg text-slate-600 leading-relaxed">
             Analista de Sistemas em Campo Largo, PR, com trajetória construída desde 2015 na
-            mesma empresa, crescendo do início da carreira até a área de TI. Sou formado em
-            Análise e Desenvolvimento de Sistemas pelo Centro Universitário Cenecista de Osório
-            (2020–2023) e possuo certificações em Linux, redes, segurança e suporte técnico.
-            Atuo no desenvolvimento e integração de sistemas, administração de redes LAN/WAN e
-            implementação de políticas de segurança de TI.
+            mesma empresa. Formado em Análise e Desenvolvimento de Sistemas (CNEC Osório, 2020–2023)
+            e certificado em Linux, redes e segurança. Além da infraestrutura, desenvolvo ferramentas
+            internas em Python e Node.js/Electron para resolver problemas reais do dia a dia — como
+            sistemas de monitoramento, backup automatizado e configuração de rede. Implantei o GLPI
+            como sistema de chamados da empresa em 2023 e também crio sites profissionais para clientes.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10">
             {specialties.map(({ icon: Icon, title, desc }) => (
@@ -367,13 +396,32 @@ export default function App() {
                         </span>
                       ))}
                     </div>
-                    <a
-                      href={project.link}
-                      className="text-slate-400 hover:text-blue-600 transition"
-                      aria-label={`Ver projeto ${project.title}`}
-                    >
-                      <ExternalLink size={18} />
-                    </a>
+                    <div className="flex gap-2 shrink-0">
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-slate-400 hover:text-blue-600 transition"
+                          aria-label={`Ver demo de ${project.title}`}
+                          title="Ver site"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      )}
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-slate-400 hover:text-blue-600 transition"
+                          aria-label={`Ver código de ${project.title}`}
+                          title="Ver no GitHub"
+                        >
+                          <Github size={18} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
