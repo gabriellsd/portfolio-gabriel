@@ -1,6 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { InteractionRequiredAuthError } from '@azure/msal-browser'
 import { useMsal } from '@azure/msal-react'
+import {
+  ArrowLeft,
+  ChevronRight,
+  Download,
+  Folder,
+  FolderPlus,
+  Image as ImageIcon,
+  Trash2,
+  Upload,
+  Video,
+  X,
+} from 'lucide-react'
 import { loginRequest } from './auth'
 import {
   decryptBytes,
@@ -58,6 +70,9 @@ export function Studio({ onClose }) {
   const [uploadPct, setUploadPct] = useState(null)
   const [preview, setPreview] = useState(null)
   const [dragOver, setDragOver] = useState(false)
+  const [folderOpen, setFolderOpen] = useState(false)
+  const [folderName, setFolderName] = useState('')
+  const [folderBusy, setFolderBusy] = useState(false)
   const fileInput = useRef(null)
   const thumbs = useRef([])
 
@@ -171,19 +186,25 @@ export function Studio({ onClose }) {
     setItems(next)
   }
 
-  async function onNewFolder() {
-    const name = window.prompt('Nome da pasta')
-    if (!name?.trim()) return
+  async function onNewFolder(e) {
+    e?.preventDefault()
+    const name = folderName.trim()
+    if (!name) return
+    setFolderBusy(true)
     const folder = {
       id: crypto.randomUUID(),
-      name: name.trim(),
+      name,
       folder: true,
       parentId: currentId,
     }
     try {
       await persist([folder, ...items])
+      setFolderName('')
+      setFolderOpen(false)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Não foi possível criar a pasta')
+    } finally {
+      setFolderBusy(false)
     }
   }
 
@@ -311,43 +332,51 @@ export function Studio({ onClose }) {
     a.click()
   }
 
+  const foldersHere = visible.filter((i) => i.folder).length
+  const filesHere = visible.length - foldersHere
+
   return (
     <div
-      className={`fixed inset-0 z-[70] bg-slate-950 text-slate-100 flex flex-col ${dragOver ? 'outline outline-2 outline-blue-500 outline-offset-[-8px]' : ''}`}
+      className="fixed inset-0 z-[70] bg-[#0b1220] text-slate-100 flex flex-col"
       onDragOver={(e) => {
         e.preventDefault()
         setDragOver(true)
       }}
-      onDragLeave={() => setDragOver(false)}
+      onDragLeave={(e) => {
+        if (e.currentTarget === e.target) setDragOver(false)
+      }}
       onDrop={(e) => {
         e.preventDefault()
         setDragOver(false)
         if (e.dataTransfer.files.length) void onUpload(e.dataTransfer.files)
       }}
     >
-      <header className="px-5 py-3 border-b border-slate-800 space-y-3">
-        <div className="flex items-center justify-between gap-3">
+      <header className="border-b border-white/10 bg-[#0e1728]/90 backdrop-blur-md">
+        <div className="flex items-center justify-between gap-3 px-5 py-3">
           <button
             type="button"
             onClick={onClose}
-            className="text-sm font-medium text-slate-300 hover:text-white"
+            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition"
           >
+            <ArrowLeft size={16} />
             Portfólio
           </button>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => void onNewFolder()}
-              className="text-sm font-semibold px-3 py-2 rounded-lg border border-slate-700 hover:bg-slate-800"
+              onClick={() => setFolderOpen(true)}
+              className="inline-flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 transition"
             >
+              <FolderPlus size={16} />
               Nova pasta
             </button>
             <button
               type="button"
               onClick={() => fileInput.current?.click()}
-              className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-lg"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-4 py-2 rounded-lg transition shadow-lg shadow-blue-600/20"
             >
-              Adicionar
+              <Upload size={16} />
+              Enviar
             </button>
           </div>
           <input
@@ -362,121 +391,224 @@ export function Studio({ onClose }) {
             }}
           />
         </div>
-        <nav className="flex flex-wrap items-center gap-1 text-sm text-slate-400">
-          <button
-            type="button"
-            className={currentId ? 'hover:text-white' : 'text-slate-100'}
-            onClick={() => setCurrentId(null)}
-          >
-            Arquivos
-          </button>
-          {crumbs.map((folder) => (
-            <span key={folder.id} className="flex items-center gap-1">
-              <span>/</span>
-              <button
-                type="button"
-                className={folder.id === currentId ? 'text-slate-100' : 'hover:text-white'}
-                onClick={() => setCurrentId(folder.id)}
-              >
-                {folder.name}
-              </button>
-            </span>
-          ))}
-        </nav>
+        <div className="flex items-center justify-between gap-3 px-5 pb-3">
+          <nav className="flex flex-wrap items-center gap-1 text-sm min-w-0">
+            <button
+              type="button"
+              className={`truncate ${currentId ? 'text-slate-400 hover:text-white' : 'text-white font-medium'}`}
+              onClick={() => setCurrentId(null)}
+            >
+              Arquivos
+            </button>
+            {crumbs.map((folder) => (
+              <span key={folder.id} className="flex items-center gap-1 min-w-0">
+                <ChevronRight size={14} className="text-slate-600 shrink-0" />
+                <button
+                  type="button"
+                  className={`truncate ${folder.id === currentId ? 'text-white font-medium' : 'text-slate-400 hover:text-white'}`}
+                  onClick={() => setCurrentId(folder.id)}
+                >
+                  {folder.name}
+                </button>
+              </span>
+            ))}
+          </nav>
+          <p className="text-xs text-slate-500 shrink-0">
+            {foldersHere} pasta{foldersHere === 1 ? '' : 's'} · {filesHere} arquivo{filesHere === 1 ? '' : 's'}
+          </p>
+        </div>
+        {uploadPct != null ? (
+          <div className="h-1 bg-white/5">
+            <div className="h-full bg-blue-500 transition-all" style={{ width: `${uploadPct}%` }} />
+          </div>
+        ) : null}
       </header>
 
       {error ? (
-        <div className="px-5 py-2 bg-red-950 text-red-300 text-sm">{error}</div>
-      ) : null}
-      {uploadPct != null ? (
-        <div className="px-5 py-2 bg-slate-900 text-sm">Enviando… {uploadPct}%</div>
+        <div className="mx-5 mt-4 rounded-xl border border-red-500/20 bg-red-950/40 px-4 py-3 text-sm text-red-200">
+          {error}
+        </div>
       ) : null}
 
-      <main className="flex-1 overflow-auto p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 content-start">
+      <main className="flex-1 overflow-auto p-5">
         {loading ? (
-          <p className="col-span-full text-center text-slate-400 py-16">Carregando…</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="h-48 rounded-2xl bg-white/5 animate-pulse" />
+            ))}
+          </div>
         ) : visible.length === 0 ? (
-          <p className="col-span-full text-center text-slate-400 py-16">
-            Pasta vazia. Crie uma pasta ou adicione fotos e vídeos.
-          </p>
-        ) : (
-          visible.map((item) => (
-            <div key={item.id} className="relative group">
-              <button
-                type="button"
-                onClick={() => openItem(item)}
-                className="w-full bg-slate-900 rounded-xl overflow-hidden text-left border border-slate-800 hover:border-slate-600"
-              >
-                {item.folder ? (
-                  <div className="h-36 grid place-items-center text-4xl bg-slate-800 text-amber-400">
-                    ▣
-                  </div>
-                ) : item.thumbUrl ? (
-                  <img src={item.thumbUrl} alt="" className="w-full h-36 object-cover" />
-                ) : (
-                  <div className="h-36 grid place-items-center text-2xl bg-slate-800">
-                    {item.video ? '▶' : '▤'}
-                  </div>
-                )}
-                {item.video ? (
-                  <span className="absolute top-2 left-2 text-[10px] uppercase bg-black/70 px-1.5 py-0.5 rounded">
-                    vídeo
-                  </span>
-                ) : null}
-                <span className="block px-2 py-2 text-xs truncate">{item.name}</span>
-              </button>
-              <button
-                type="button"
-                className="absolute top-2 right-2 text-[10px] bg-black/70 px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 text-red-300"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  void onDelete(item)
-                }}
-              >
-                Excluir
-              </button>
+          <div className="h-full min-h-[420px] grid place-items-center">
+            <div className="text-center max-w-sm">
+              <div className="mx-auto mb-5 w-16 h-16 rounded-2xl bg-blue-600/15 text-blue-400 grid place-items-center">
+                <Upload size={28} />
+              </div>
+              <h2 className="text-lg font-semibold mb-2">Esta pasta está vazia</h2>
+              <p className="text-sm text-slate-400 mb-6">
+                Envie fotos e vídeos ou crie uma subpasta para organizar o acervo.
+              </p>
+              <div className="flex justify-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setFolderOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-sm hover:bg-white/5"
+                >
+                  <FolderPlus size={16} />
+                  Nova pasta
+                </button>
+                <button
+                  type="button"
+                  onClick={() => fileInput.current?.click()}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-sm font-medium hover:bg-blue-500"
+                >
+                  <Upload size={16} />
+                  Enviar arquivos
+                </button>
+              </div>
             </div>
-          ))
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {visible.map((item) => {
+              const count = items.filter((i) => parentOf(i) === item.id).length
+              return (
+                <article
+                  key={item.id}
+                  className="group relative rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-white/20 hover:bg-white/[0.05] transition"
+                >
+                  <button type="button" onClick={() => openItem(item)} className="w-full text-left">
+                    {item.folder ? (
+                      <div className="h-40 grid place-items-center bg-gradient-to-br from-amber-500/15 to-transparent">
+                        <Folder size={48} className="text-amber-400" fill="currentColor" fillOpacity={0.2} />
+                      </div>
+                    ) : item.thumbUrl ? (
+                      <img src={item.thumbUrl} alt="" className="w-full h-40 object-cover" />
+                    ) : (
+                      <div className="h-40 grid place-items-center bg-white/5 text-slate-500">
+                        {item.video ? <Video size={36} /> : <ImageIcon size={36} />}
+                      </div>
+                    )}
+                    {item.video ? (
+                      <span className="absolute top-3 left-3 text-[10px] font-semibold uppercase tracking-wide bg-black/60 backdrop-blur px-2 py-1 rounded-md">
+                        Vídeo
+                      </span>
+                    ) : null}
+                    <div className="px-3 py-3">
+                      <p className="text-sm font-medium truncate">{item.name}</p>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        {item.folder ? `${count} ${count === 1 ? 'item' : 'itens'}` : item.video ? 'Vídeo' : 'Imagem'}
+                      </p>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    title="Excluir"
+                    className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-black/55 backdrop-blur text-slate-200 grid place-items-center opacity-0 group-hover:opacity-100 hover:text-red-300 transition"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      void onDelete(item)
+                    }}
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </article>
+              )
+            })}
+          </div>
         )}
       </main>
 
+      {dragOver ? (
+        <div className="pointer-events-none absolute inset-0 z-[75] bg-blue-600/15 border-2 border-dashed border-blue-400 m-3 rounded-3xl grid place-items-center">
+          <p className="text-lg font-medium">Solte os arquivos para enviar</p>
+        </div>
+      ) : null}
+
+      {folderOpen ? (
+        <div className="fixed inset-0 z-[85] bg-black/60 backdrop-blur-sm grid place-items-center p-4">
+          <form
+            onSubmit={(e) => void onNewFolder(e)}
+            className="w-full max-w-sm rounded-2xl border border-white/10 bg-[#121b2e] p-6 shadow-2xl"
+          >
+            <h2 className="text-base font-semibold mb-1">Nova pasta</h2>
+            <p className="text-sm text-slate-400 mb-4">O nome aparece só nesta galeria.</p>
+            <input
+              autoFocus
+              value={folderName}
+              onChange={(e) => setFolderName(e.target.value)}
+              placeholder="Ex.: Viagem 2026"
+              className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm outline-none focus:border-blue-500"
+            />
+            <div className="flex justify-end gap-2 mt-5">
+              <button
+                type="button"
+                onClick={() => {
+                  setFolderOpen(false)
+                  setFolderName('')
+                }}
+                className="px-3 py-2 text-sm rounded-lg text-slate-300 hover:bg-white/5"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                disabled={folderBusy || !folderName.trim()}
+                className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-50"
+              >
+                {folderBusy ? 'Criando…' : 'Criar'}
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : null}
+
       {preview?.url ? (
         <div
-          className="fixed inset-0 z-[90] bg-black/80 grid place-items-center p-4"
+          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm grid place-items-center p-4"
           onClick={() => {
             URL.revokeObjectURL(preview.url)
             setPreview(null)
           }}
         >
           <div
-            className="w-full max-w-4xl bg-slate-900 rounded-2xl overflow-hidden"
+            className="w-full max-w-5xl rounded-2xl border border-white/10 bg-[#121b2e] overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <header className="flex items-center justify-between gap-3 px-4 py-3 border-b border-slate-800">
+            <header className="flex items-center justify-between gap-3 px-4 py-3 border-b border-white/10">
               <h2 className="text-sm font-medium truncate">{preview.name}</h2>
-              <div className="flex gap-2 shrink-0">
-                <button type="button" className="text-sm text-blue-400" onClick={() => onDownload(preview)}>
+              <div className="flex items-center gap-1 shrink-0">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg hover:bg-white/5"
+                  onClick={() => onDownload(preview)}
+                >
+                  <Download size={14} />
                   Baixar
                 </button>
-                <button type="button" className="text-sm text-red-400" onClick={() => void onDelete(preview)}>
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg text-red-300 hover:bg-red-950/40"
+                  onClick={() => void onDelete(preview)}
+                >
+                  <Trash2 size={14} />
                   Remover
                 </button>
                 <button
                   type="button"
-                  className="text-sm text-slate-300"
+                  className="w-8 h-8 grid place-items-center rounded-lg hover:bg-white/5"
                   onClick={() => {
                     URL.revokeObjectURL(preview.url)
                     setPreview(null)
                   }}
                 >
-                  Fechar
+                  <X size={16} />
                 </button>
               </div>
             </header>
             {preview.mime?.startsWith('video/') ? (
-              <video src={preview.url} controls autoPlay className="w-full max-h-[70vh] bg-black" />
+              <video src={preview.url} controls autoPlay className="w-full max-h-[75vh] bg-black" />
             ) : (
-              <img src={preview.url} alt={preview.name} className="w-full max-h-[70vh] object-contain bg-black" />
+              <img src={preview.url} alt={preview.name} className="w-full max-h-[75vh] object-contain bg-black" />
             )}
           </div>
         </div>
