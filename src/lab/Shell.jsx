@@ -20,6 +20,7 @@ export function Shell() {
   const [gate, setGate] = useState(false)
   const taps = useRef(0)
   const tapTimer = useRef(null)
+  const loginStarted = useRef(false)
 
   useEffect(() => {
     const pending = consumePendingAuth()
@@ -36,15 +37,15 @@ export function Shell() {
   }, [open, authenticated])
 
   useEffect(() => {
+    if (authenticated) loginStarted.current = false
     if (!open || authenticated) return
-    if (
-      inProgress === InteractionStatus.Startup ||
-      inProgress === InteractionStatus.HandleRedirect
-    ) {
-      return
-    }
+    if (inProgress !== InteractionStatus.None) return
+    if (loginStarted.current) return
+    loginStarted.current = true
     markPendingAuth()
-    void instance.loginRedirect(loginRequest)
+    void instance.loginRedirect(loginRequest).catch(() => {
+      loginStarted.current = false
+    })
   }, [open, authenticated, inProgress, instance])
 
   function onSecretTap() {

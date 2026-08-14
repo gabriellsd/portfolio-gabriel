@@ -20,9 +20,10 @@ export const msalConfig = {
     postLogoutRedirectUri: window.location.origin,
   },
   cache: {
-    cacheLocation: 'localStorage',
+    cacheLocation: 'sessionStorage',
   },
   system: {
+    allowPlatformBroker: false,
     loggerOptions: {
       logLevel: LogLevel.Warning,
       loggerCallback: (level, message, containsPii) => {
@@ -30,6 +31,9 @@ export const msalConfig = {
         if (level === LogLevel.Error) console.error(message)
       },
     },
+  },
+  experimental: {
+    allowPlatformBrokerWithDOM: false,
   },
 }
 

@@ -25,7 +25,11 @@ if (!hasClientId || isEmbeddedBrowser()) {
   void pca
     .initialize()
     .then(async () => {
-      await pca.handleRedirectPromise()
+      try {
+        await pca.handleRedirectPromise()
+      } catch {
+        /* login pode ter concluído mesmo com aviso do Windows */
+      }
       root.render(
         <StrictMode>
           <MsalProvider instance={pca}>

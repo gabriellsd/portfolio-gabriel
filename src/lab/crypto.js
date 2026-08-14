@@ -1,14 +1,33 @@
 const MAGIC = new Uint8Array([0x47, 0x44, 0x30, 0x31])
 
-export async function deriveAesKey(pin, salt) {
+function toHex(buf) {
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+function fromHex(hex) {
+  const out = new Uint8Array(hex.length / 2)
+  for (let i = 0; i < out.length; i += 1) {
+    out[i] = Number.parseInt(hex.slice(i * 2, i * 2 + 2), 16)
+  }
+  return out
+}
+
+async function importRawKey(bits) {
+  return crypto.subtle.importKey('raw', bits, { name: 'AES-GCM' }, false, [
+    'encrypt',
+    'decrypt',
+  ])
+}
+
+export async function exportKeyFromPin(pin, salt) {
   const material = await crypto.subtle.importKey(
     'raw',
     new TextEncoder().encode(pin),
     'PBKDF2',
     false,
-    ['deriveKey'],
+    ['deriveBits'],
   )
-  return crypto.subtle.deriveKey(
+  const bits = await crypto.subtle.deriveBits(
     {
       name: 'PBKDF2',
       salt: new TextEncoder().encode(salt),
@@ -16,24 +35,22 @@ export async function deriveAesKey(pin, salt) {
       hash: 'SHA-256',
     },
     material,
-    { name: 'AES-GCM', length: 256 },
-    true,
-    ['encrypt', 'decrypt'],
+    256,
   )
+  return { hex: toHex(bits), key: await importRawKey(bits) }
 }
 
-export async function exportKey(key) {
-  return JSON.stringify(await crypto.subtle.exportKey('jwk', key))
-}
-
-export async function importKey(jwkJson) {
-  return crypto.subtle.importKey(
-    'jwk',
-    JSON.parse(jwkJson),
-    { name: 'AES-GCM' },
-    true,
-    ['encrypt', 'decrypt'],
-  )
+export async function importStoredKey(raw) {
+  if (raw.startsWith('{')) {
+    return crypto.subtle.importKey(
+      'jwk',
+      JSON.parse(raw),
+      { name: 'AES-GCM' },
+      false,
+      ['encrypt', 'decrypt'],
+    )
+  }
+  return importRawKey(fromHex(raw))
 }
 
 export async function encryptBytes(key, plain) {

@@ -43,6 +43,8 @@ export function Gate({ onUnlock, onCancel }) {
       await setPin(pin)
       await storeKeyFromPin(pin)
       onUnlock()
+    } catch {
+      setMsg('Não foi possível abrir agora. Tente de novo.')
     } finally {
       setBusy(false)
     }

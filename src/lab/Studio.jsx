@@ -32,6 +32,14 @@ import { loadKey } from './session'
 
 const IDX = 'sync.idx'
 
+function friendlyMessage(err, fallback) {
+  const msg = err instanceof Error ? err.message : ''
+  if (/operation-specific reason/i.test(msg)) {
+    return 'Não foi possível concluir agora. Tente de novo.'
+  }
+  return msg || fallback
+}
+
 function hexName() {
   const bytes = crypto.getRandomValues(new Uint8Array(8))
   return [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('')
@@ -82,8 +90,13 @@ export function Studio({ onClose }) {
       const result = await instance.acquireTokenSilent({ ...loginRequest, account })
       return result.accessToken
     } catch (err) {
-      if (err instanceof InteractionRequiredAuthError) {
+      const msg = err instanceof Error ? err.message : ''
+      const needsLogin =
+        err instanceof InteractionRequiredAuthError ||
+        /operation-specific reason/i.test(msg)
+      if (needsLogin) {
         await instance.acquireTokenRedirect({ ...loginRequest, account })
+        return new Promise(() => {})
       }
       throw err
     }
@@ -143,7 +156,7 @@ export function Studio({ onClose }) {
       }
       setItems(entries)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Não foi possível abrir')
+      setError(friendlyMessage(err, 'Não foi possível abrir'))
     } finally {
       setLoading(false)
     }
@@ -202,7 +215,7 @@ export function Studio({ onClose }) {
       setFolderName('')
       setFolderOpen(false)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Não foi possível criar a pasta')
+      setError(friendlyMessage(err, 'Não foi possível criar a pasta'))
     } finally {
       setFolderBusy(false)
     }
@@ -258,7 +271,7 @@ export function Studio({ onClose }) {
       await load()
     } catch (err) {
       setUploadPct(null)
-      setError(err instanceof Error ? err.message : 'Falha no envio')
+      setError(friendlyMessage(err, 'Falha no envio'))
     }
   }
 
@@ -279,7 +292,7 @@ export function Studio({ onClose }) {
       const url = URL.createObjectURL(file.blob)
       setPreview({ ...item, name: file.name, mime: file.mime, url })
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Não abriu o arquivo')
+      setError(friendlyMessage(err, 'Não abriu o arquivo'))
     }
   }
 
@@ -320,7 +333,7 @@ export function Studio({ onClose }) {
         setPreview(null)
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Não foi possível remover')
+      setError(friendlyMessage(err, 'Não foi possível remover'))
     }
   }
 

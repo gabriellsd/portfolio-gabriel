@@ -1,4 +1,4 @@
-import { deriveAesKey, exportKey, importKey } from './crypto.js'
+import { exportKeyFromPin, importStoredKey } from './crypto.js'
 
 const HASH_KEY = 'calc.mem.a'
 const SALT_KEY = 'calc.mem.b'
@@ -49,15 +49,15 @@ export function lockSession() {
 export async function storeKeyFromPin(pin) {
   const salt = localStorage.getItem(SALT_KEY)
   if (!salt) throw new Error('Código não definido')
-  const key = await deriveAesKey(pin, salt)
-  sessionStorage.setItem(KEY_STORE, await exportKey(key))
+  const { hex, key } = await exportKeyFromPin(pin, salt)
+  sessionStorage.setItem(KEY_STORE, hex)
   return key
 }
 
 export async function loadKey() {
   const raw = sessionStorage.getItem(KEY_STORE)
   if (!raw) return null
-  return importKey(raw)
+  return importStoredKey(raw)
 }
 
 export function markPendingAuth() {
