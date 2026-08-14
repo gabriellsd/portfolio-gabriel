@@ -70,18 +70,12 @@ export async function getItem(token, id) {
   return graph(token, `/me/drive/items/${id}`)
 }
 
-export async function downloadItem(token, item) {
-  const res = await fetch(`${GRAPH}/me/drive/items/${item.id}/content`, {
+export async function downloadBytes(token, id) {
+  const res = await fetch(`${GRAPH}/me/drive/items/${id}/content`, {
     headers: { Authorization: `Bearer ${token}` },
   })
-  if (!res.ok) throw new Error('Falha ao baixar o arquivo')
-  const blob = await res.blob()
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = item.name
-  a.click()
-  URL.revokeObjectURL(url)
+  if (!res.ok) throw new Error('Falha ao baixar')
+  return new Uint8Array(await res.arrayBuffer())
 }
 
 export async function uploadFile(token, parentId, file, onProgress) {
@@ -104,7 +98,7 @@ export async function uploadFile(token, parentId, file, onProgress) {
   const session = await graph(token, `${itemPath}/createUploadSession`, {
     method: 'POST',
     body: JSON.stringify({
-      item: { '@microsoft.graph.conflictBehavior': 'rename' },
+      item: { '@microsoft.graph.conflictBehavior': 'replace' },
     }),
   })
 

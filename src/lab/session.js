@@ -1,7 +1,10 @@
+import { deriveAesKey, exportKey, importKey } from './crypto.js'
+
 const HASH_KEY = 'calc.mem.a'
 const SALT_KEY = 'calc.mem.b'
 const OPEN_KEY = 'calc.mem.s'
 const PENDING_KEY = 'calc.mem.p'
+const KEY_STORE = 'calc.mem.k'
 
 function toHex(buf) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
@@ -40,6 +43,21 @@ export function unlockSession() {
 
 export function lockSession() {
   sessionStorage.removeItem(OPEN_KEY)
+  sessionStorage.removeItem(KEY_STORE)
+}
+
+export async function storeKeyFromPin(pin) {
+  const salt = localStorage.getItem(SALT_KEY)
+  if (!salt) throw new Error('Código não definido')
+  const key = await deriveAesKey(pin, salt)
+  sessionStorage.setItem(KEY_STORE, await exportKey(key))
+  return key
+}
+
+export async function loadKey() {
+  const raw = sessionStorage.getItem(KEY_STORE)
+  if (!raw) return null
+  return importKey(raw)
 }
 
 export function markPendingAuth() {

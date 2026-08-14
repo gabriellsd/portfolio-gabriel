@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { checkPin, hasPin, setPin } from './session'
+import { checkPin, hasPin, setPin, storeKeyFromPin } from './session'
 
 export function Gate({ onUnlock, onCancel }) {
   const [step, setStep] = useState(hasPin() ? 'enter' : 'pin1')
@@ -13,8 +13,10 @@ export function Gate({ onUnlock, onCancel }) {
       return
     }
     if (step === 'enter') {
-      if (await checkPin(pin)) onUnlock()
-      else {
+      if (await checkPin(pin)) {
+        await storeKeyFromPin(pin)
+        onUnlock()
+      } else {
         setMsg('Não encontrado.')
         setPinValue('')
       }
@@ -36,6 +38,7 @@ export function Gate({ onUnlock, onCancel }) {
     }
     sessionStorage.removeItem('calc.mem.tmp')
     await setPin(pin)
+    await storeKeyFromPin(pin)
     onUnlock()
   }
 
