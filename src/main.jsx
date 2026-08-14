@@ -4,8 +4,7 @@ import { PublicClientApplication } from '@azure/msal-browser'
 import { MsalProvider } from '@azure/msal-react'
 import './index.css'
 import { hasClientId, msalConfig } from './lab/auth'
-import { isEmbeddedBrowser } from './lab/browser.js'
-import { EmbeddedShell } from './lab/EmbeddedShell.jsx'
+import App from './App.jsx'
 import { Shell } from './lab/Shell.jsx'
 
 const root = createRoot(document.getElementById('root'))
@@ -13,12 +12,12 @@ const root = createRoot(document.getElementById('root'))
 function renderPlain() {
   root.render(
     <StrictMode>
-      <EmbeddedShell />
+      <App />
     </StrictMode>,
   )
 }
 
-if (!hasClientId || isEmbeddedBrowser()) {
+if (!hasClientId) {
   renderPlain()
 } else {
   const pca = new PublicClientApplication(msalConfig)

@@ -10,6 +10,20 @@ function toHex(buf) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+function readMem(key) {
+  return sessionStorage.getItem(key) || localStorage.getItem(key)
+}
+
+function writeMem(key, value) {
+  sessionStorage.setItem(key, value)
+  localStorage.setItem(key, value)
+}
+
+function clearMem(key) {
+  sessionStorage.removeItem(key)
+  localStorage.removeItem(key)
+}
+
 async function sha256(value) {
   const data = new TextEncoder().encode(value)
   return toHex(await crypto.subtle.digest('SHA-256', data))
@@ -34,38 +48,39 @@ export async function checkPin(pin) {
 }
 
 export function isUnlocked() {
-  return sessionStorage.getItem(OPEN_KEY) === '1'
+  return readMem(OPEN_KEY) === '1'
 }
 
 export function unlockSession() {
-  sessionStorage.setItem(OPEN_KEY, '1')
+  writeMem(OPEN_KEY, '1')
 }
 
 export function lockSession() {
-  sessionStorage.removeItem(OPEN_KEY)
-  sessionStorage.removeItem(KEY_STORE)
+  clearMem(OPEN_KEY)
+  clearMem(KEY_STORE)
+  clearMem(PENDING_KEY)
 }
 
 export async function storeKeyFromPin(pin) {
   const salt = localStorage.getItem(SALT_KEY)
   if (!salt) throw new Error('Código não definido')
   const { hex, key } = await exportKeyFromPin(pin, salt)
-  sessionStorage.setItem(KEY_STORE, hex)
+  writeMem(KEY_STORE, hex)
   return key
 }
 
 export async function loadKey() {
-  const raw = sessionStorage.getItem(KEY_STORE)
+  const raw = readMem(KEY_STORE)
   if (!raw) return null
   return importStoredKey(raw)
 }
 
 export function markPendingAuth() {
-  sessionStorage.setItem(PENDING_KEY, '1')
+  writeMem(PENDING_KEY, '1')
 }
 
 export function consumePendingAuth() {
-  if (sessionStorage.getItem(PENDING_KEY) !== '1') return false
-  sessionStorage.removeItem(PENDING_KEY)
+  if (readMem(PENDING_KEY) !== '1') return false
+  clearMem(PENDING_KEY)
   return true
 }
