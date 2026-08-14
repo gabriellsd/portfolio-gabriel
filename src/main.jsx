@@ -3,28 +3,38 @@ import { createRoot } from 'react-dom/client'
 import { PublicClientApplication } from '@azure/msal-browser'
 import { MsalProvider } from '@azure/msal-react'
 import './index.css'
-import App from './App.jsx'
 import { hasClientId, msalConfig } from './lab/auth'
+import { isEmbeddedBrowser } from './lab/browser.js'
+import { EmbeddedShell } from './lab/EmbeddedShell.jsx'
 import { Shell } from './lab/Shell.jsx'
 
 const root = createRoot(document.getElementById('root'))
 
-if (!hasClientId) {
+function renderPlain() {
   root.render(
     <StrictMode>
-      <App />
+      <EmbeddedShell />
     </StrictMode>,
   )
+}
+
+if (!hasClientId || isEmbeddedBrowser()) {
+  renderPlain()
 } else {
   const pca = new PublicClientApplication(msalConfig)
-  void pca.initialize().then(async () => {
-    await pca.handleRedirectPromise()
-    root.render(
-      <StrictMode>
-        <MsalProvider instance={pca}>
-          <Shell />
-        </MsalProvider>
-      </StrictMode>,
-    )
-  })
+  void pca
+    .initialize()
+    .then(async () => {
+      await pca.handleRedirectPromise()
+      root.render(
+        <StrictMode>
+          <MsalProvider instance={pca}>
+            <Shell />
+          </MsalProvider>
+        </StrictMode>,
+      )
+    })
+    .catch(() => {
+      renderPlain()
+    })
 }
