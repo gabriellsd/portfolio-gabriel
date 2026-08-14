@@ -8,6 +8,7 @@ import {
   Folder,
   FolderPlus,
   Image as ImageIcon,
+  LogOut,
   Trash2,
   Upload,
   Video,
@@ -66,7 +67,7 @@ function subtree(items, folderId) {
   )
 }
 
-export function Studio({ onClose }) {
+export function Studio({ onClose, onSignOut }) {
   const { instance, accounts } = useMsal()
   const account = accounts[0]
   const [driveFolderId, setDriveFolderId] = useState(null)
@@ -365,16 +366,26 @@ export function Studio({ onClose }) {
       }}
     >
       <header className="border-b border-white/10 bg-[#0e1728]/90 backdrop-blur-md">
-        <div className="flex items-center justify-between gap-3 px-5 py-3">
-          <button
-            type="button"
-            onClick={onClose}
-            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition"
-          >
-            <ArrowLeft size={16} />
-            Portfólio
-          </button>
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-3 px-5 py-3 flex-wrap">
+          <div className="flex items-center gap-3 min-w-0">
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition"
+            >
+              <ArrowLeft size={16} />
+              Portfólio
+            </button>
+            <button
+              type="button"
+              onClick={() => void onSignOut()}
+              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-red-300 transition"
+            >
+              <LogOut size={16} />
+              Sair da conta
+            </button>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
             <button
               type="button"
               onClick={() => setFolderOpen(true)}

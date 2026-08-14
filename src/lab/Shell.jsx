@@ -72,11 +72,26 @@ export function Shell() {
     if (window.location.hash === '#gd') history.replaceState(null, '', window.location.pathname)
   }
 
+  async function signOut() {
+    lockSession()
+    setOpen(false)
+    if (window.location.hash === '#gd') history.replaceState(null, '', window.location.pathname)
+    try {
+      await instance.logoutRedirect({
+        extraQueryParameters: { ui_locales: 'pt-BR' },
+      })
+    } catch {
+      await instance.logoutRedirect({
+        onRedirectNavigate: () => false,
+      })
+    }
+  }
+
   return (
     <>
       <App onSecretTap={onSecretTap} />
       {gate ? <Gate onUnlock={unlock} onCancel={() => setGate(false)} /> : null}
-      {open && authenticated ? <Studio onClose={closeStudio} /> : null}
+      {open && authenticated ? <Studio onClose={closeStudio} onSignOut={signOut} /> : null}
     </>
   )
 }
