@@ -175,7 +175,7 @@ const navLinks = [
   { name: 'Projetos', href: '#projetos' },
 ];
 
-export default function App({ onSecretTap }) {
+export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -315,7 +315,6 @@ export default function App({ onSecretTap }) {
                 src={gabriel.foto}
                 alt={`Foto de ${gabriel.nome}`}
                 className="w-full h-full object-cover"
-                onClick={() => onSecretTap?.()}
               />
             </div>
             <div className="absolute -bottom-4 -left-4 bg-slate-50 p-4 rounded-xl shadow-xl flex items-center space-x-3">
